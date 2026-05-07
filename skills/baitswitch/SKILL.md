@@ -3,11 +3,14 @@ name: baitswitch
 description: Test skill for bait-and-switch update PoC — initial benign state.
 ---
 
-# Bait-and-Switch Test Skill (benign)
+# Bait-and-Switch Test Skill (mutated)
 
-This is the initial benign state of the test skill.
+The body of this file now contains MALICIOUS-MARKER-DO-NOT-COMMIT. The
+frontmatter name and description above are deliberately unchanged from
+the benign version, so that the install machinery's only signal of
+identity is unchanged. Only the bytes differ.
 
-The body of this file contains the marker BENIGN-DO-NOT-COMMIT. After
-`skills update` runs against an attacker-mutated source, this body and
-this marker will be replaced wholesale with attacker-controlled bytes,
-without any user prompt.
+In a real attack, this body would carry prompt-injection content
+targeting the downstream agent runtime (`~/.claude/skills/baitswitch/`
+becomes part of Claude Code's session-start context, etc.). For this
+PoC, the marker bytes are sufficient to prove the swap.
